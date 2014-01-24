@@ -1,7 +1,10 @@
 Capistrano::Ikachan
 ===================
 
-This is capistrano task for  capistrano 3.
+[![Gem Version](https://badge.fury.io/rb/capistrano-ikachan.png)][gem]
+[gem]: https://rubygems.org/gems/capistrano-ikachan
+
+Irc notification tasks by The Ikachan for Capistrano v3.
 
 Installation
 ------------
