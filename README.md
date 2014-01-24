@@ -1,8 +1,10 @@
-# Capistrano::Ikachan
+Capistrano::Ikachan
+===================
 
-TODO: Write a gem description
+This is capistrano task for  capistrano 3.
 
-## Installation
+Installation
+------------
 
 Add this line to your application's Gemfile:
 
@@ -16,11 +18,27 @@ Or install it yourself as:
 
     $ gem install capistrano-ikachan
 
-## Usage
+Usage
+-----
 
-TODO: Write usage instructions here
+Capfile:
 
-## Contributing
+```ruby
+require 'capistrano/ikachan'
+```
+
+config.rb:
+
+```ruby
+set irc_channel, 'ikachan'
+set irc_server, 'http://chat.freenode.net'
+
+before 'deploy:starting', 'irc:notify_start'
+after 'deploy:finished', 'irc:notify_end'
+```
+
+Contributing
+------------
 
 1. Fork it ( http://github.com/<my-github-username>/capistrano-ikachan/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
