@@ -30,11 +30,11 @@ require 'capistrano/ikachan'
 config.rb:
 
 ```ruby
-set irc_channel, 'ikachan'
-set irc_server, 'http://chat.freenode.net'
+set ikachan_channel, 'ikachan'
+set ikachan_server, 'http://ikachan.example.com'
 
-before 'deploy:starting', 'irc:notify_start'
-after 'deploy:finished', 'irc:notify_end'
+before 'deploy:starting', 'ikachan:notify_start'
+after 'deploy:finished', 'ikachan:notify_end'
 ```
 
 Contributing
