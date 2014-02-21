@@ -11,15 +11,21 @@ Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'capistrano-ikachan'
+```ruby
+gem 'capistrano-ikachan'
+```
 
 And then execute:
 
-    $ bundle
+```sh
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install capistrano-ikachan
+```sh
+$ gem install capistrano-ikachan
+```
 
 Usage
 -----
@@ -36,15 +42,26 @@ config.rb:
 set ikachan_channel, 'ikachan'
 set ikachan_server, 'http://ikachan.example.com'
 
-before 'deploy:starting', 'ikachan:notify_start'
-after 'deploy:finished', 'ikachan:notify_end'
+after 'deploy:starting', 'ikachan:notify_start'
+after 'deploy:finishing', 'ikachan:notify_success'
+after 'deploy:finishing_rollback', 'ikachan:notify_failure'
 ```
 
 Contributing
 ------------
 
-1. Fork it ( http://github.com/<my-github-username>/capistrano-ikachan/fork )
+1. Fork it ( http://github.com/linyows/capistrano-ikachan/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+Authors
+-------
+
+- [linyows](https://github.com/linyows)
+
+License
+-------
+
+The MIT License (MIT)
