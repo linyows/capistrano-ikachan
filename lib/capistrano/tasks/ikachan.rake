@@ -30,10 +30,11 @@ namespace :ikachan do
   }
 
   set :ikachan_start_message, -> {
-    "#{fetch(:application)}: #{fetch(:start_icon)} started deploying to #{fetch(:destination)} of #{fetch(:branch)} by #{fetch(:username)} #{elapse_time}"
+    "#{fetch(:application)}: #{fetch(:start_icon)} started deploying to #{fetch(:destination)} of #{fetch(:branch)} by #{fetch(:username)}"
   }
 
   set :ikachan_failure_message, -> {
+    elapse_time = "(#{sprintf('%.2f', Time.now - start)} sec)"
     "#{fetch(:application)}: #{fetch(:failure_icon)} failed deploying to #{fetch(:destination)} of #{fetch(:branch)} by #{fetch(:username)} #{elapse_time}"
   }
 
