@@ -13,25 +13,33 @@ namespace :ikachan do
     username
   }
 
+  set :start_icon, -> { StringIrc.new('✔').orange.to_s }
+  set :failure_icon, -> { StringIrc.new('✘').red.to_s }
+  set :success_icon, -> { StringIrc.new('✔').light_green.to_s }
+
   set :destination, -> {
     stage = "#{fetch(:stage)}"
     color = case stage
-            when 'production' then :rainbow
-            when 'staging' then :light_blue
-            else :grey
-            end
+      when 'production' then :rainbow
+      when 'staging' then :light_blue
+      when 'sandbox' then :yellow
+      when 'development' then :purple
+      else :grey
+      end
     StringIrc.new(stage).send(color)
   }
 
   set :ikachan_start_message, -> {
-    state = StringIrc.new('started').orange.bold.to_s
-    "#{fetch(:username)} #{state} deployment to #{fetch(:destination)} of #{fetch(:application)} from #{fetch(:branch)} by cap"
+    "#{fetch(:application)}: #{fetch(:start_icon)} started deploying to #{fetch(:destination)} of #{fetch(:branch)} by #{fetch(:username)} #{elapse_time}"
   }
 
-  set :ikachan_end_message, -> {
+  set :ikachan_failure_message, -> {
+    "#{fetch(:application)}: #{fetch(:failure_icon)} failed deploying to #{fetch(:destination)} of #{fetch(:branch)} by #{fetch(:username)} #{elapse_time}"
+  }
+
+  set :ikachan_success_message, -> {
     elapse_time = "(#{sprintf('%.2f', Time.now - start)} sec)"
-    state = StringIrc.new('finished').green.bold.to_s
-    "#{fetch(:username)} #{state} deployment to #{fetch(:destination)} by cap #{elapse_time}"
+    "#{fetch(:application)}: #{fetch(:success_icon)} successful deployment to #{fetch(:destination)} of #{fetch(:branch)} by #{fetch(:username)} #{elapse_time}"
   }
 
   def notify_to_ikachan(message)
@@ -46,7 +54,11 @@ namespace :ikachan do
     notify_to_ikachan fetch(:ikachan_start_message)
   end
 
-  task :notify_end do
-    notify_to_ikachan fetch(:ikachan_end_message)
+  task :notify_failure do
+    notify_to_ikachan fetch(:ikachan_failure_message)
+  end
+
+  task :notify_success do
+    notify_to_ikachan fetch(:ikachan_success_message)
   end
 end
