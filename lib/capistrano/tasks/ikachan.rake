@@ -81,7 +81,7 @@ namespace :ikachan do
         "#{host}/join"
       execute :curl, '-s',
         "-F channel=\##{channel}",
-        "-F message=\"#{args[:message]}\"",
+        "-F message=\"#{message}\"",
         "#{host}/#{type}"
     end
   end
