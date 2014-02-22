@@ -4,7 +4,7 @@ Capistrano::Ikachan
 [![Gem Version](https://badge.fury.io/rb/capistrano-ikachan.png)][gem]
 [gem]: https://rubygems.org/gems/capistrano-ikachan
 
-Irc notification tasks by The Ikachan for Capistrano v3.
+Irc notification tasks with Ikachan for Capistrano v3.
 
 Installation
 ------------
@@ -42,9 +42,9 @@ config.rb:
 set ikachan_channel, 'ikachan'
 set ikachan_server, 'http://ikachan.example.com'
 
-after 'deploy:starting', 'ikachan:notify_start'
-after 'deploy:finishing', 'ikachan:notify_success'
-after 'deploy:finishing_rollback', 'ikachan:notify_failure'
+after 'deploy:started', 'ikachan:notify_start'
+after 'deploy:finishing', 'ikachan:notify_deployment'
+after 'deploy:finishing_rollback', 'ikachan:notify_rollback'
 ```
 
 Contributing
