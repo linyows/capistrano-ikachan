@@ -36,6 +36,7 @@ namespace :ikachan do
 
     magic_number = Digest::MD5.hexdigest(app).
       gsub(/[^0-9]/, '').split('').last.to_i
+    magic_number -= 1 unless magic_number.zero?
 
     colors = StringIrc::COLOR_TABLE.select { |k,v|
       2 < k && k < 13 && k != 4 && k != 13
