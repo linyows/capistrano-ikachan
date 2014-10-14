@@ -39,8 +39,8 @@ require 'capistrano/ikachan'
 config.rb:
 
 ```ruby
-set ikachan_channel, 'ikachan'
-set ikachan_server, 'http://ikachan.example.com'
+set :ikachan_channel, 'ikachan'
+set :ikachan_server, 'http://ikachan.example.com'
 
 after 'deploy:started', 'ikachan:notify_start'
 after 'deploy:finishing', 'ikachan:notify_deployment'
