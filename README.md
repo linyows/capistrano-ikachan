@@ -1,10 +1,10 @@
 Capistrano::Ikachan
 ===================
 
-[![Gem Version](https://badge.fury.io/rb/capistrano-ikachan.png)][gem]
-[gem]: https://rubygems.org/gems/capistrano-ikachan
-
 Irc notification tasks with Ikachan for Capistrano v3.
+
+[![Gem version](https://img.shields.io/gem/v/capistrano-ikachan.svg?style=flat-square)][gem]
+[gem]: https://rubygems.org/gems/capistrano-ikachan
 
 Installation
 ------------
