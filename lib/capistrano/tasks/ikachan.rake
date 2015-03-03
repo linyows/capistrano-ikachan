@@ -1,5 +1,7 @@
 require 'string-irc'
 require 'digest/md5'
+require 'net/http'
+require 'uri'
 
 namespace :ikachan do
   start = Time.now
@@ -76,15 +78,8 @@ namespace :ikachan do
     host = fetch(:ikachan_server)
     type = fetch(:ikachan_message_type)
 
-    run_locally do
-      execute :curl, '-s',
-        "-F channel=\##{channel}",
-        "#{host}/join"
-      execute :curl, '-s',
-        "-F channel=\##{channel}",
-        "-F message=\"#{message}\"",
-        "#{host}/#{type}"
-    end
+    Net::HTTP.post_form(URI.parse("#{host}/join"), channel: "##{channel}")
+    Net::HTTP.post_form(URI.parse("#{host}/#{type}"), channel: "##{channel}", message: message)
   end
 
   desc 'Notify message to IRC with Ikachan'
